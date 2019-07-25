@@ -31,7 +31,7 @@ def delete(id):
 def search(name = "", team = "", jersey = "", mvp = ""):
     connection = sqlite3.connect("Players.db")
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM Athlete WHERE name=? OR team=? OR jersey=? OR mvp=?", (name, team, jersey, mvp))
+    cursor.execute("SELECT name, team, jersey, mvp FROM Athlete WHERE name=? OR team=? OR jersey=? OR mvp=?", (name, team, jersey, mvp))
     data = cursor.fetchall()
     connection.close()
     return data
@@ -39,7 +39,7 @@ def search(name = "", team = "", jersey = "", mvp = ""):
 def view():
     connection = sqlite3.connect("Players.db")
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM Athlete")
+    cursor.execute("SELECT name, team, jersey, mvp FROM Athlete")
     data = cursor.fetchall()
     connection.close()
     return data
