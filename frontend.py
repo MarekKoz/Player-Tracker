@@ -4,32 +4,31 @@ import backend
 def view_players():
     results_box.delete(0, END)
     for data in backend.view():
-        results_box.insert(END, data)
+        results_box.insert(END, F"{data[0]}, {str(data[1])}, {data[2]}, Jersey: {data[3]}, MVP: {data[4]}")
 
 def get_selection(event):
     try:
         global selected
-        index = results_box.curselection()[0]
-        selected = results_box.get(index)
-
+        index = results_box.get(results_box.curselection())[0]
+        selected = backend.select_player(index)
         name_entry.delete(0, END)
-        name_entry.insert(END, selected[1])
+        name_entry.insert(END, selected[0][1])
 
         team_entry.delete(0, END)
-        team_entry.insert(END, selected[2])
+        team_entry.insert(END, selected[0][2])
 
         jersey_entry.delete(0, END)
-        jersey_entry.insert(END, selected[3])
+        jersey_entry.insert(END, selected[0][3])
 
         mvp_entry.delete(0, END)
-        mvp_entry.insert(END, selected[4])
-    except IndexError:
+        mvp_entry.insert(END, selected[0][4])
+    except:
         pass
 
 def search_players():
     results_box.delete(0, END)
     for data in backend.search(name_text.get(), team_text.get(), jersey_text.get(), mvp_text.get()):
-        results_box.insert(END, data)
+        results_box.insert(END, F"{data[0]}, {str(data[1])}, {data[2]}, Jersey: {data[3]}, MVP: {data[4]}")
     
 def add_player():
     backend.insert(name_text.get(), team_text.get(), jersey_text.get(), mvp_text.get())
@@ -42,7 +41,7 @@ def add_player():
     mvp_entry.delete(0, END)
 
 def delete_player():
-    backend.delete(selected[0])
+    backend.delete(selected[0][0])
     view_players()
     name_entry.delete(0, END)
     team_entry.delete(0, END)
@@ -50,7 +49,7 @@ def delete_player():
     mvp_entry.delete(0, END)
 
 def update_player():
-    backend.update(selected[0], name_text.get(), team_text.get(), jersey_text.get(), mvp_text.get())
+    backend.update(selected[0][0], name_text.get(), team_text.get(), jersey_text.get(), mvp_text.get())
     view_players()
     name_entry.delete(0, END)
     team_entry.delete(0, END)
@@ -93,7 +92,7 @@ mvp_entry = Entry(window, textvariable = mvp_text)
 mvp_entry.grid(row = 1, column = 3)
 
 #Text field where results are published (List Box)
-results_box = Listbox(window, height = 8, width = 38)
+results_box = Listbox(window, height = 8, width = 50)
 results_box.grid(row = 3, column = 0, rowspan = 6, columnspan = 2)
 scroll_bar = Scrollbar(window)
 scroll_bar.grid(row = 3, column = 2, rowspan = 6)
