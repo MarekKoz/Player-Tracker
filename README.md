@@ -22,4 +22,11 @@ An Example Player Entry:
 
 ### Screenshot
 
+Application Interface
+
 ![Alt text](insertLINK "Main Screen")
+
+When Player Selected:
+
+![Alt text](insertLINK "Select Player")
+
