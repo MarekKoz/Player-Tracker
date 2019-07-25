@@ -7,6 +7,22 @@ def connect():
     connection.commit()
     connection.close()
 
+def insert(name, team, jersey, mvp):
+    connection = sqlite3.connect("Players.db")
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO Athlete VALUES (NULL, ?, ?, ?, ?)", (name, team, jersey, mvp))
+    connection.commit()
+    connection.close()
+
+def view():
+    connection = sqlite3.connect("Players.db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Athlete")
+    data = cursor.fetchall()
+    connection.close()
+    return data
+
 connect()
-    
+insert("Kobe Bryant", "Los Angeles Lakers", 24, 1)
+print(view())
 
