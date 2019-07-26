@@ -60,7 +60,7 @@ def update_player():
 
 
 window = Tk()
-window.wm_title('Player Collection')
+window.wm_title('Player Tracker')
 #window.configure(background = "grey")
 
 #Labels for each entry field
