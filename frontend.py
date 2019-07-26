@@ -1,11 +1,13 @@
 from tkinter import *
 import backend
 
+#Button Methods (when clicked)
 def view_players():
     results_box.delete(0, END)
     for data in backend.view():
         results_box.insert(END, F"{data[0]}, {str(data[1])}, {data[2]}, Jersey: {data[3]}, MVP: {data[4]}")
 
+#When an entry is clicked on in the display field
 def get_selection(event):
     try:
         global selected
