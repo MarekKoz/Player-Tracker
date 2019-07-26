@@ -26,6 +26,8 @@ Application Interface
 
 ![Alt text](https://github.com/MarekKoz/Player-Tracker/blob/master/documentation/basic.png "Main Screen")
 
+
+
 When Player Selected:
 
 ![Alt text](https://github.com/MarekKoz/Player-Tracker/blob/master/documentation/playerSelected.png "Select Player")
